@@ -5,7 +5,13 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 const Ruter = () => (
   <Router>
     <div>
-      <Route path='/' exact component={() => <App isIndex />} />
+      <Route
+        path='/'
+        exact
+        component={() => (
+          <App match={{ params: { id2: 'Разни', id: 'cat' } }} />
+        )}
+      />
       <Route
         path='/:id/'
         exact
