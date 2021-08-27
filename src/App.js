@@ -90,7 +90,7 @@ const Item = ({ item }) => (
 
 const App = props => {
   const { isIndex, match } = props
-  const cat = match ? match.params.id2 : 'Разни'
+
   const [state, setState] = useImmer({
     firstkey: 0,
     lastkey: 0,
@@ -105,18 +105,7 @@ const App = props => {
 
   useEffect(() => {
     async function mount () {
-      if (isIndex) {
-        const items = await axios(
-          `https://db.rudixlab.com/api/rest/jokes/Разни/${Math.floor(
-            Math.random() * 11107
-          )}`
-        )
-        setState(draft => {
-          draft.isLoading = false
-          draft.items = items.data
-          draft.total = items.data.Jokes_aggregate.aggregate.count
-        })
-      } else if (match.params.start_key) {
+      if (match.params.start_key) {
         const items = await axios(
           `https://db.rudixlab.com/api/rest/jokes/${cat}/${match.params
             .start_key *
@@ -127,7 +116,6 @@ const App = props => {
           draft.isCat = true
           draft.isLoading = false
           draft.total = items.data.Jokes_aggregate.aggregate.count
-          draft.isPagination = true
           draft.currentPage = match.params.start_key
           draft.items = items.data.Jokes
         })
@@ -163,7 +151,7 @@ const App = props => {
     }
     mount()
     // openNotification();
-  }, [cat, isIndex, match.params.id, match.params.start_key, setState])
+  }, [cat, isIndex, match, setState])
 
   const { isLoading, measures, isCat, currentPage, total, items } = state
   return (
