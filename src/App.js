@@ -90,6 +90,7 @@ const Item = ({ item }) => (
 
 const App = props => {
   const { isIndex, match } = props
+  const cat = match.params.id2
 
   const [state, setState] = useImmer({
     firstkey: 0,
