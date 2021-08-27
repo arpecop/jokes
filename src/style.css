@@ -1,0 +1,12 @@
+.ant-list-item {
+    border: none;
+}
+.ant-list-item:nth-child(odd) {
+    background-color: #ffffff;
+}
+a {
+    color: #2d3436;
+}
+a:hover {
+    color: #2d3436;
+}
