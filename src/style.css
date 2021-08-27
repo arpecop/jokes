@@ -1,12 +1,15 @@
 .ant-list-item {
-    border: none;
+  border: none;
 }
 .ant-list-item:nth-child(odd) {
-    background-color: #ffffff;
+  background-color: #ffffff;
 }
 a {
-    color: #2d3436;
+  color: #2d3436;
 }
 a:hover {
-    color: #2d3436;
+  color: #2d3436;
+}
+.ant-pagination-options-size-changer {
+  display: none !important;
 }
