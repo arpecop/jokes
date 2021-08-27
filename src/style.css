@@ -1,15 +1,12 @@
 .ant-list-item {
-  border: none;
+  padding: 20px !important;
+  font-size: medium;
+  border-radius: 25px;
 }
 .ant-list-item:nth-child(odd) {
-  background-color: #ffffff;
+  background-color: #f2f2f2;
 }
-a {
-  color: #2d3436;
-}
-a:hover {
-  color: #2d3436;
-}
+
 .ant-pagination-options-size-changer {
   display: none !important;
 }

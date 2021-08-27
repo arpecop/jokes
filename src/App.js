@@ -72,10 +72,11 @@ const Item = ({ item }) => (
       padding: 0,
       margin: 0
     }}
+    className='ant-list-item'
   >
     <div>
       <JokeBr joke={item.joke} />
-      <p> </p>
+
       <a
         style={{ backgroundColor: '#3b5998', border: 'none' }}
         className='ant-btn ant-btn-primary ant-btn-round'
@@ -83,7 +84,6 @@ const Item = ({ item }) => (
       >
         {' Сподели'}
       </a>
-      <hr />
     </div>
   </div>
 )
@@ -158,7 +158,7 @@ const App = props => {
   return (
     <>
       <h2 style={{ fontWeight: 'lighter' }}>
-        <a href='https://arpecop.xyz'> 😜 Вицове - {cat}</a>
+        <a href='https://vicove.netlify.app'> 😜 Вицове - {cat}</a>
       </h2>
       <Drawerx />
       {isLoading ? (
@@ -209,12 +209,7 @@ const App = props => {
               <div style={{ textAlign: 'center' }}>
                 <Cats />
 
-                <div>
-                  <Waypoint onEnter={openNotification} />
-                  <a href='https://play.google.com/store/apps/details?id=com.rudixlabs.jokes2'>
-                    <img src='/vicbg.png' style={{ maxWidth: '100%' }} alt='' />
-                  </a>
-                </div>
+                <Waypoint onEnter={openNotification} />
               </div>
             </Col>
           </Row>
