@@ -90,6 +90,7 @@ const Item = ({ item }) => (
 
 const App = props => {
   const { isIndex, match } = props
+  const cat = match ? match.params.id2 : 'Разни'
   const [state, setState] = useImmer({
     firstkey: 0,
     lastkey: 0,
@@ -97,7 +98,6 @@ const App = props => {
     collapsed: true,
     isCat: false,
     isItem: false,
-    cat: match ? match.params.id2 : 'Разни',
     total: 0,
     currentPage: 1,
     items: { Jokes: [] }
@@ -163,9 +163,9 @@ const App = props => {
     }
     mount()
     // openNotification();
-  }, [])
+  }, [cat, isIndex, match.params.id, match.params.start_key, setState])
 
-  const { isLoading, measures, isCat, currentPage, total, cat, items } = state
+  const { isLoading, measures, isCat, currentPage, total, items } = state
   return (
     <>
       <h2 style={{ fontWeight: 'lighter' }}>
