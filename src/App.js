@@ -79,7 +79,7 @@ const Item = ({ item }) => (
       <a
         style={{ backgroundColor: '#3b5998', border: 'none' }}
         className='ant-btn ant-btn-primary ant-btn-round'
-        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item.id}`}
+        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item._id}`}
       >
         {' Сподели'}
       </a>
@@ -158,7 +158,7 @@ const App = props => {
   return (
     <>
       <h2 style={{ fontWeight: 'lighter' }}>
-        <a href='https://arpecop.xyz'> 😜 Вицове </a>
+        <a href='https://arpecop.xyz'> 😜 Вицове - {cat}</a>
       </h2>
       <Drawerx />
       {isLoading ? (
