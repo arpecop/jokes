@@ -81,7 +81,6 @@ const Item = ({ item }) => (
   >
     <div>
       <JokeBr joke={item.joke} />
-      {item.id}
       <a
         style={{ backgroundColor: '#3b5998', border: 'none' }}
         className='ant-btn ant-btn-primary ant-btn-round'
