@@ -10,10 +10,13 @@ a {
   background-color: #f2f2f2;
 }
 
-.ant-pagination-options-size-changer {
+.ant-pagination-options-size-changer,
+.ant-pagination-jump-prev,
+.ant-pagination-jump-next {
   display: none !important;
 }
 
 .header {
-  padding: 6px;
+  padding: 15px;
+  position: fixed;
 }

@@ -12,7 +12,7 @@ const Ruter = () => (
           <App match={{ params: { id2: 'Разни', id: 'cat' } }} />
         )}
       />
-      <Route path='/:id/' exact render={props => <App match={props.match} />} />
+      <Route path='/:id' exact render={props => <App match={props.match} />} />
       <Route
         path='/:id/:id2'
         exact

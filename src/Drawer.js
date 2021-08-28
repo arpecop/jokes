@@ -31,8 +31,8 @@ class Drawerx extends React.Component {
       <div>
         <div
           style={{
-            padding: 5,
-            position: 'absolute',
+            padding: 15,
+            position: 'fixed',
             right: 0,
             top: 0
           }}
