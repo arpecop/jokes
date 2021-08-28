@@ -31,8 +31,8 @@ const Iframe = ({ src, height, width }) => (
   />
 )
 const Cats = () =>
-  cats.map(item1 => (
-    <a key={uuid()} href={`/cat/${item1.key}`}>
+  cats.map(({ cat }) => (
+    <a key={cat} href={`/cat/${cat}`}>
       <Tag
         color='magenta'
         style={{
@@ -40,7 +40,7 @@ const Cats = () =>
           cursor: 'pointer'
         }}
       >
-        {item1.key}
+        {cat}
       </Tag>
     </a>
   ))
@@ -157,9 +157,11 @@ const App = props => {
   const { isLoading, measures, isCat, currentPage, total, items } = state
   return (
     <>
-      <h2 style={{ fontWeight: 'lighter' }}>
-        <a href='https://vicove.netlify.app'> 😜 Вицове - {cat}</a>
-      </h2>
+      <div className='header'>
+        <h2 style={{ fontWeight: 'lighter' }}>
+          <a href='https://vicove.netlify.app'> 😜 Вицове - {cat}</a>
+        </h2>
+      </div>
       <Drawerx />
       {isLoading ? (
         <div style={{ textAlign: 'center' }}>

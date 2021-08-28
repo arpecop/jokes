@@ -3,10 +3,17 @@
   font-size: medium;
   border-radius: 25px;
 }
+a {
+  color: rgb(48, 47, 47);
+}
 .ant-list-item:nth-child(odd) {
   background-color: #f2f2f2;
 }
 
 .ant-pagination-options-size-changer {
   display: none !important;
+}
+
+.header {
+  padding: 6px;
 }
