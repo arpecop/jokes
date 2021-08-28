@@ -1,7 +1,11 @@
 .ant-list-item {
-  padding: 20px !important;
-  font-size: medium;
-  border-radius: 25px;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  padding-top: 20px !important;
+  padding-bottom: 32px !important;
+
+  border-radius: 20px;
+  margin-bottom: 20px !important;
 }
 a {
   color: rgb(48, 47, 47);
@@ -10,6 +14,11 @@ a {
   background-color: #f2f2f2;
 }
 
+.ant-pagination {
+  text-align: center;
+}
+.ant-pagination-prev,
+.ant-pagination-next,
 .ant-pagination-options-size-changer,
 .ant-pagination-jump-prev,
 .ant-pagination-jump-next {
@@ -17,6 +26,11 @@ a {
 }
 
 .header {
-  padding: 15px;
   position: fixed;
+}
+
+.share {
+  position: absolute;
+  float: right;
+  right: 0px;
 }

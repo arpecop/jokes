@@ -50,12 +50,7 @@ const JokeBr = ({ joke }) =>
       i,
       item
     }))
-    .map(({ item, i }) => (
-      <span key={i}>
-        {item}
-        <br />
-      </span>
-    ))
+    .map(({ item, i }) => <div key={i}>{item}</div>)
 
 const openNotification = () => {
   notification.open({
@@ -81,9 +76,10 @@ const Item = ({ item }) => (
   >
     <div>
       <JokeBr joke={item.joke} />
+
       <a
         style={{ backgroundColor: '#3b5998', border: 'none' }}
-        className='ant-btn ant-btn-primary ant-btn-round'
+        className='ant-btn ant-btn-primary ant-btn-round share'
         href={`https://www.facebook.com/sharer/sharer.php?u=https://vicove.netlify.app/${item.id}`}
       >
         {' Сподели'}
