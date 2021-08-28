@@ -34,7 +34,9 @@ class Drawerx extends React.Component {
             padding: 15,
             position: 'fixed',
             right: 0,
-            top: 0
+            top: 0,
+            zIndex: 1,
+            background: '#fff'
           }}
         >
           <MenuOutlined onClick={this.showDrawer} />

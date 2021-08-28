@@ -25,12 +25,11 @@ a {
   display: none !important;
 }
 
-.header {
-  position: fixed;
-}
-
 .share {
   position: absolute;
   float: right;
   right: 0px;
+}
+.container {
+  margin-top: 40px;
 }

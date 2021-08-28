@@ -162,61 +162,63 @@ const App = props => {
           <a href='https://vicove.netlify.app'> 😜 Вицове - {cat}</a>
         </h2>
       </div>
-      <Drawerx />
-      {isLoading ? (
-        <div style={{ textAlign: 'center' }}>
-          <Button type='primary' loading />
-        </div>
-      ) : (
-        <div>
-          {!isIndex && !isCat ? (
-            <Helmet>
-              <title>Виц</title>
-              <meta
-                property='og:url'
-                content={`https://vicove.netlify.app/${match.params.id}`}
-              />
-              <meta property='od:description' content={measures.text} />
-              <meta property='og:type' content='article' />
-              <meta property='og:title' content='🤣 Прочети ➡️' />
-              <meta
-                property='og:image'
-                content={`https://grafix.herokuapp.com/${measures.id}.png`}
-              />
-              <meta property='og:image:width' content={measures.width} />
-              <meta property='og:image:height' content={measures.height} />
-              <meta name='twitter:card' content='summary' />
-              <meta name='twitter:creator' content='@Rudi11963642' />
-            </Helmet>
-          ) : null}
+      <div className='container'>
+        <Drawerx />
+        {isLoading ? (
+          <div style={{ textAlign: 'center' }}>
+            <Button type='primary' loading />
+          </div>
+        ) : (
+          <div>
+            {!isIndex && !isCat ? (
+              <Helmet>
+                <title>Виц</title>
+                <meta
+                  property='og:url'
+                  content={`https://vicove.netlify.app/${match.params.id}`}
+                />
+                <meta property='od:description' content={measures.text} />
+                <meta property='og:type' content='article' />
+                <meta property='og:title' content='🤣 Прочети ➡️' />
+                <meta
+                  property='og:image'
+                  content={`https://grafix.herokuapp.com/${measures.id}.png`}
+                />
+                <meta property='og:image:width' content={measures.width} />
+                <meta property='og:image:height' content={measures.height} />
+                <meta name='twitter:card' content='summary' />
+                <meta name='twitter:creator' content='@Rudi11963642' />
+              </Helmet>
+            ) : null}
 
-          <Row type='flex' justify='center' align='top' style={{ padding: 10 }}>
-            <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-              {items.map((item, index) => (
-                <Item key={index} item={item} />
-              ))}
+            <Row type='flex' justify='center' align='top'>
+              <Col xs={23} sm={20} md={16} lg={15} xl={12}>
+                {items.map((item, index) => (
+                  <Item key={index} item={item} />
+                ))}
 
-              <Pagination
-                pageSize={30}
-                defaultCurrent={currentPage}
-                total={total}
-                itemRender={(page, type) => {
-                  if (type === 'page') {
-                    return <a href={'/cat/' + cat + '/' + page}>{page}</a>
-                  }
-                  return null
-                }}
-              />
+                <Pagination
+                  pageSize={30}
+                  defaultCurrent={currentPage}
+                  total={total}
+                  itemRender={(page, type) => {
+                    if (type === 'page') {
+                      return <a href={'/cat/' + cat + '/' + page}>{page}</a>
+                    }
+                    return null
+                  }}
+                />
 
-              <div style={{ textAlign: 'center' }}>
-                <Cats />
+                <div style={{ textAlign: 'center' }}>
+                  <Cats />
 
-                <Waypoint onEnter={openNotification} />
-              </div>
-            </Col>
-          </Row>
-        </div>
-      )}
+                  <Waypoint onEnter={openNotification} />
+                </div>
+              </Col>
+            </Row>
+          </div>
+        )}
+      </div>
     </>
   )
 }
