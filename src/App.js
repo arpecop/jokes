@@ -8,7 +8,6 @@ import axios from 'axios'
 import { Button, Row, Col, Tag, notification, Pagination } from 'antd'
 import { Waypoint } from 'react-waypoint'
 import { Helmet } from 'react-helmet'
-import uuid from 'react-uuid'
 
 import Drawerx from './Drawer'
 
@@ -45,12 +44,18 @@ const Cats = () =>
     </a>
   ))
 const JokeBr = ({ joke }) =>
-  joke.split('\n').map(item2 => (
-    <span key={uuid()}>
-      {item2}
-      <br />
-    </span>
-  ))
+  joke
+    .split('\n')
+    .map((item, i) => ({
+      i,
+      item
+    }))
+    .map(({ item, i }) => (
+      <span key={i}>
+        {item}
+        <br />
+      </span>
+    ))
 
 const openNotification = () => {
   notification.open({
@@ -76,11 +81,11 @@ const Item = ({ item }) => (
   >
     <div>
       <JokeBr joke={item.joke} />
-
+      {item.id}
       <a
         style={{ backgroundColor: '#3b5998', border: 'none' }}
         className='ant-btn ant-btn-primary ant-btn-round'
-        href={`https://www.facebook.com/sharer/sharer.php?u=https://${window.location.hostname}/${item._id}`}
+        href={`https://www.facebook.com/sharer/sharer.php?u=https://vicove.netlify.app/${item.id}`}
       >
         {' Сподели'}
       </a>
@@ -174,11 +179,11 @@ const App = props => {
               <title>Виц</title>
               <meta
                 property='og:url'
-                content={`https://${window.location.hostname}/${match.params.id}`}
+                content={`https://vicove.netlify.app/${match.params.id}`}
               />
               <meta property='od:description' content={measures.text} />
               <meta property='og:type' content='article' />
-              <meta property='og:title' content='🤣 Още Вицове ➡️' />
+              <meta property='og:title' content='🤣 Прочети ➡️' />
               <meta
                 property='og:image'
                 content={`https://grafix.herokuapp.com/${measures.id}.png`}
