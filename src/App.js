@@ -66,7 +66,7 @@ const openNotification = () => {
   })
 }
 
-const Item = ({ item }) => (
+const Item = ({ item, cat }) => (
   <div
     style={{
       padding: 0,
@@ -194,12 +194,13 @@ const App = props => {
             <Row type='flex' justify='center' align='top'>
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
                 {items.map((item, index) => (
-                  <Item key={index} item={item} />
+                  <Item key={index} item={item} cat={cat} />
                 ))}
 
                 <Pagination
                   pageSize={30}
                   defaultCurrent={currentPage}
+                  hideOnSinglePage
                   total={total}
                   itemRender={(page, type) => {
                     if (type === 'page') {
