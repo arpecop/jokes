@@ -5,13 +5,13 @@ import React, { useEffect } from 'react'
 
 import { useImmer } from 'use-immer'
 import axios from 'axios'
-import { Button, Row, Col, Tag, notification, Pagination } from 'antd'
+import { Button, Row, Col, Tag, notification, Pagination, Input } from 'antd'
 import { Waypoint } from 'react-waypoint'
 import { Helmet } from 'react-helmet'
 
-import Drawerx from './Drawer'
+import Drawerx from './Components/Drawer'
 
-import { cats } from './cats'
+import { cats } from './utils/cats'
 
 import 'antd/dist/antd.css'
 
@@ -66,7 +66,7 @@ const openNotification = () => {
   })
 }
 
-const Item = ({ item, cat }) => (
+const Item = ({ item, user }) => (
   <div
     style={{
       padding: 0,
@@ -76,20 +76,27 @@ const Item = ({ item, cat }) => (
   >
     <div>
       <JokeBr joke={item.joke} />
-
-      <a
-        style={{ backgroundColor: '#3b5998', border: 'none' }}
-        className='ant-btn ant-btn-primary ant-btn-round share'
-        href={`https://www.facebook.com/sharer/sharer.php?u=https://vicove.netlify.app/${item.id}`}
-      >
-        {' Сподели'}
-      </a>
+      {user ? (
+        <Input
+          value={
+            'https://vicove.netlify.app/u/' + user.username + '/' + item.id
+          }
+        ></Input>
+      ) : (
+        <a
+          style={{ backgroundColor: '#3b5998', border: 'none' }}
+          className='ant-btn ant-btn-primary ant-btn-round share'
+          href={`https://www.facebook.com/sharer/sharer.php?u=https://vicove.netlify.app/${item.id}`}
+        >
+          {' Сподели'}
+        </a>
+      )}
     </div>
   </div>
 )
 
 const App = props => {
-  const { isIndex, match } = props
+  const { isIndex, match, user } = props
   const cat = match.params.id2
 
   const [state, setState] = useImmer({
@@ -101,6 +108,7 @@ const App = props => {
     isItem: false,
     total: 0,
     currentPage: 1,
+
     items: { Jokes: [] }
   })
 
@@ -120,7 +128,7 @@ const App = props => {
           draft.currentPage = match.params.start_key
           draft.items = items.data.Jokes
         })
-      } else if (match.params.id === 'cat') {
+      } else if (match.params.id2) {
         const items = await axios(
           `https://db.rudixlab.com/api/rest/jokes/${cat}/0`
         )
@@ -194,7 +202,7 @@ const App = props => {
             <Row type='flex' justify='center' align='top'>
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
                 {items.map((item, index) => (
-                  <Item key={index} item={item} cat={cat} />
+                  <Item key={index} item={item} cat={cat} user={user} />
                 ))}
 
                 <Pagination

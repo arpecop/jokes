@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { Auth } from 'aws-amplify'
 import { Input } from 'antd'
 import { useRecoilState } from 'recoil'
-import Error from '../Error'
+import Error from '../Components/Error'
 
 import { navigation } from '../utils/state'
 

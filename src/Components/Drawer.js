@@ -1,7 +1,7 @@
 import React from 'react'
 import { Drawer } from 'antd'
 import { MenuOutlined } from '@ant-design/icons'
-import { cats } from './cats'
+import { cats } from '../utils/cats'
 
 const Cats = ({ cats }) =>
   cats.map(({ cat }) => (

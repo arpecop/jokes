@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { Auth } from 'aws-amplify'
 import { Input } from 'antd'
 
-import Error from '../Error'
+import Error from '../Components/Error'
 
 const styles = {
   Input: {
