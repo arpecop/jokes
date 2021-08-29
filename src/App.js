@@ -76,7 +76,7 @@ const Item = ({ item, user }) => (
   >
     <div>
       <JokeBr joke={item.joke} />
-      {user ? (
+      {user.username ? (
         <Input
           value={
             'https://vicove.netlify.app/u/' + user.username + '/' + item.id
