@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 
 import { RecoilRoot, useRecoilState } from 'recoil'
 import { Amplify, Auth } from 'aws-amplify'
-import { BrowserRouter as Router, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import App from './App'
 import Login from './Login/Login'
