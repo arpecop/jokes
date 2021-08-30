@@ -75,7 +75,7 @@ const Ruter = () => {
       />
       <Route path='/app/login' exact render={() => <Login />} />
       <Route path='/app/forgot' exact render={() => <Forgot />} />
-      <Route path='/app/signup' exact render={() => <SignUp />} />
+      <Route path='/app/register' exact render={() => <SignUp />} />
     </Router>
   )
 }

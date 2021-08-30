@@ -31,6 +31,12 @@ a {
   float: right;
   right: 0px;
 }
-.container {
-  margin-top: 40px;
+
+.ad {
+  background-color: blueviolet;
+  text-align: center;
+  padding: 20px;
+}
+.ad h3 {
+  color: rgb(255, 253, 253);
 }

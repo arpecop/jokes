@@ -5,11 +5,12 @@ import React, { useEffect } from 'react'
 
 import { useImmer } from 'use-immer'
 import axios from 'axios'
-import { Button, Row, Col, Tag, notification, Pagination, Input } from 'antd'
+import { Button, Tag, notification, Pagination, Input } from 'antd'
 import { Waypoint } from 'react-waypoint'
 import { Helmet } from 'react-helmet'
-import SignUp from './Login/SignUp'
+
 import Drawerx from './Components/Drawer'
+import Layout from './Layout/Layout'
 import { insert_counter } from './utils/db.js'
 import { cats } from './utils/cats'
 
@@ -177,80 +178,68 @@ const App = props => {
   const { isLoading, measures, isCat, currentPage, total, items } = state
   return (
     <>
-      <div className='header'>
-        <h2 style={{ fontWeight: 'lighter' }}>
-          <a href='https://vicove.netlify.app'> 😜 Вицове - {cat}</a>
-        </h2>
-      </div>
-      <div className='container'>
-        <Drawerx />
+      <Drawerx />
+      <Layout>
         {isLoading ? (
           <div style={{ textAlign: 'center' }}>
             <Button type='primary' loading />
           </div>
         ) : (
-          <div>
-            {!isIndex && !isCat && (
-              <Helmet>
-                <title>Виц</title>
-                <meta
-                  property='og:url'
-                  content={`https://vicove.netlify.app/${match.params.id}`}
-                />
-                <meta property='od:description' content={measures.text} />
-                <meta property='og:type' content='article' />
-                <meta property='og:title' content='🤣 Прочети ➡️' />
-                <meta
-                  property='og:image'
-                  content={`https://grafix.herokuapp.com/${measures.id}.png`}
-                />
-                <meta property='og:image:width' content={measures.width} />
-                <meta property='og:image:height' content={measures.height} />
-                <meta name='twitter:card' content='summary' />
-                <meta name='twitter:creator' content='@Rudi11963642' />
-              </Helmet>
-            )}
-
-            <Row type='flex' justify='center' align='top'>
-              <Col xs={23} sm={20} md={16} lg={15} xl={12}>
-                {items.map((item, index) => (
-                  <>
-                    {index === 2 && !user.username && (
-                      <>
-                        <h3>
-                          Печели от разпространение на вицовете в социалната
-                          мрежа!
-                        </h3>
-                        <SignUp />
-                      </>
-                    )}
-                    <Item key={index} item={item} cat={cat} user={user} />
-                  </>
-                ))}
-
-                <Pagination
-                  pageSize={30}
-                  defaultCurrent={currentPage}
-                  hideOnSinglePage
-                  total={total}
-                  itemRender={(page, type) => {
-                    if (type === 'page') {
-                      return <a href={'/cat/' + cat + '/' + page}>{page}</a>
-                    }
-                    return null
-                  }}
-                />
-
-                <div style={{ textAlign: 'center' }}>
-                  <Cats />
-
-                  <Waypoint onEnter={openNotification} />
-                </div>
-              </Col>
-            </Row>
-          </div>
+          !isIndex &&
+          !isCat && (
+            <Helmet>
+              <title>Виц</title>
+              <meta
+                property='og:url'
+                content={`https://vicove.netlify.app/${match.params.id}`}
+              />
+              <meta property='od:description' content={measures.text} />
+              <meta property='og:type' content='article' />
+              <meta property='og:title' content='🤣 Прочети ➡️' />
+              <meta
+                property='og:image'
+                content={`https://grafix.herokuapp.com/${measures.id}.png`}
+              />
+              <meta property='og:image:width' content={measures.width} />
+              <meta property='og:image:height' content={measures.height} />
+              <meta name='twitter:card' content='summary' />
+              <meta name='twitter:creator' content='@Rudi11963642' />
+            </Helmet>
+          )
         )}
-      </div>
+        {items.map((item, index) => (
+          <>
+            {index === 2 && !user.username && (
+              <div className='ad'>
+                <img src='/img/money.png' alt='' width='60' />
+                <h3>
+                  Печели от разпространение на вицовете в социалната мрежа!
+                </h3>
+                <Button href='/app/register'>Регистрация</Button>
+              </div>
+            )}
+            <Item key={index} item={item} cat={cat} user={user} />
+          </>
+        ))}
+        <Pagination
+          pageSize={30}
+          defaultCurrent={currentPage}
+          hideOnSinglePage
+          total={total}
+          itemRender={(page, type) => {
+            if (type === 'page') {
+              return <a href={'/cat/' + cat + '/' + page}>{page}</a>
+            }
+            return null
+          }}
+        />
+        <div style={{ textAlign: 'center' }}>
+          <Cats />
+
+          <Waypoint onEnter={openNotification} />
+        </div>
+        )}
+      </Layout>
     </>
   )
 }

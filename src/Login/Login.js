@@ -45,7 +45,7 @@ const Login = () => {
     }
   }
   return (
-    <Layout title='Вход'>
+    <Layout title='Вход' active='login'>
       {user.x && <Error errorMessage={error} />}
       {error && <Error errorMessage={error} />}
       <p>

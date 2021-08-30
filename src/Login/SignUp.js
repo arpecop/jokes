@@ -4,6 +4,7 @@ import { Auth } from 'aws-amplify'
 import { Input, Button } from 'antd'
 
 import Error from '../Components/Error'
+import Layout from '../Layout/Layout'
 
 const SignUp = () => {
   const [state, setState] = useState({
@@ -47,10 +48,9 @@ const SignUp = () => {
     }
   }
   return (
-    <div>
+    <Layout active='register'>
       {state.stage === 0 && (
         <div>
-          <h1>Регистрация</h1>
           {state.error && <Error errorMessage={state.error} />}
           <p>
             <Input
@@ -110,7 +110,7 @@ const SignUp = () => {
           Регистрация успешна ,<a href='/app/login'>Вход</a>
         </>
       )}
-    </div>
+    </Layout>
   )
 }
 
