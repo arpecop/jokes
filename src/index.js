@@ -67,7 +67,7 @@ const Ruter = () => {
         )}
       />
       <Route
-        path='/u/:user/:id'
+        path='/u/:ref/:id'
         exact
         render={props => (
           <App match={props.match} isIndex={false} user={user} />

@@ -8,9 +8,9 @@ import axios from 'axios'
 import { Button, Row, Col, Tag, notification, Pagination, Input } from 'antd'
 import { Waypoint } from 'react-waypoint'
 import { Helmet } from 'react-helmet'
-
+import SignUp from './Login/SignUp'
 import Drawerx from './Components/Drawer'
-
+import { insert_counter } from './utils/db.js'
 import { cats } from './utils/cats'
 
 import 'antd/dist/antd.css'
@@ -78,6 +78,7 @@ const Item = ({ item, user }) => (
       <JokeBr joke={item.joke} />
       {user.username ? (
         <Input
+          style={{ width: '100%' }}
           value={
             'https://vicove.netlify.app/u/' + user.username + '/' + item.id
           }
@@ -98,6 +99,7 @@ const Item = ({ item, user }) => (
 const App = props => {
   const { isIndex, match, user } = props
   const cat = match.params.id2
+  const ref = match.params.ref
 
   const [state, setState] = useImmer({
     firstkey: 0,
@@ -108,8 +110,7 @@ const App = props => {
     isItem: false,
     total: 0,
     currentPage: 1,
-
-    items: { Jokes: [] }
+    items: []
   })
 
   useEffect(() => {
@@ -141,6 +142,17 @@ const App = props => {
           draft.items = items.data.Jokes
         })
       } else {
+        axios.get('https://geolocation-db.com/json/').then(res => {
+          const operationsDoc = `
+          mutation insert_article {
+            insert_Jokes_counter_one(object: {ip: "${res.data.IPv4}", ref: "${ref}", useragent: "${window.navigator.userAgent}"}) {
+              id
+            }
+          } 
+        `
+          insert_counter(operationsDoc)
+        })
+
         const items = await axios(
           `https://db.rudixlab.com/api/rest/jokes/${match.params.id}`
         )
@@ -160,7 +172,7 @@ const App = props => {
     }
     mount()
     // openNotification();
-  }, [cat, isIndex, match, setState])
+  }, [cat, isIndex, match, setState, ref])
 
   const { isLoading, measures, isCat, currentPage, total, items } = state
   return (
@@ -178,7 +190,7 @@ const App = props => {
           </div>
         ) : (
           <div>
-            {!isIndex && !isCat ? (
+            {!isIndex && !isCat && (
               <Helmet>
                 <title>Виц</title>
                 <meta
@@ -197,12 +209,23 @@ const App = props => {
                 <meta name='twitter:card' content='summary' />
                 <meta name='twitter:creator' content='@Rudi11963642' />
               </Helmet>
-            ) : null}
+            )}
 
             <Row type='flex' justify='center' align='top'>
               <Col xs={23} sm={20} md={16} lg={15} xl={12}>
                 {items.map((item, index) => (
-                  <Item key={index} item={item} cat={cat} user={user} />
+                  <>
+                    {index === 2 && !user.username && (
+                      <>
+                        <h3>
+                          Печели от разпространение на вицовете в социалната
+                          мрежа!
+                        </h3>
+                        <SignUp />
+                      </>
+                    )}
+                    <Item key={index} item={item} cat={cat} user={user} />
+                  </>
                 ))}
 
                 <Pagination

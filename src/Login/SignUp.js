@@ -1,31 +1,10 @@
 import React, { useState } from 'react'
 
 import { Auth } from 'aws-amplify'
-import { Input } from 'antd'
+import { Input, Button } from 'antd'
 
 import Error from '../Components/Error'
 
-const styles = {
-  Input: {
-    height: 40,
-    margin: '10px 0px',
-    padding: 7
-  },
-  formContainer: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  button: {
-    backgroundColor: 'rebeccapurple',
-    padding: '15px 7px',
-    cursor: 'pointer',
-    textAlign: 'center',
-    marginBottom: 10
-  },
-  buttonText: {
-    color: 'white'
-  }
-}
 const SignUp = () => {
   const [state, setState] = useState({
     username: '',
@@ -70,51 +49,59 @@ const SignUp = () => {
   return (
     <div>
       {state.stage === 0 && (
-        <div style={styles.formContainer}>
+        <div>
           <h1>Регистрация</h1>
           {state.error && <Error errorMessage={state.error} />}
-          <Input
-            onChange={handleUpdate}
-            placeholder='потребител'
-            name='username'
-            value={state.username}
-            style={styles.Input}
-          />
-          <Input
-            onChange={handleUpdate}
-            placeholder='парола'
-            name='password'
-            value={state.password}
-            type='password'
-            style={styles.Input}
-          />
-          <Input
-            onChange={handleUpdate}
-            placeholder='Email'
-            name='email'
-            value={state.email}
-            style={styles.Input}
-          />
+          <p>
+            <Input
+              onChange={handleUpdate}
+              placeholder='потребител'
+              name='username'
+              value={state.username}
+            />
+          </p>
+          <p>
+            <Input
+              onChange={handleUpdate}
+              placeholder='парола'
+              name='password'
+              value={state.password}
+              type='password'
+            />
+          </p>
+          <p>
+            <Input
+              onChange={handleUpdate}
+              placeholder='Email'
+              name='email'
+              value={state.email}
+            />
+          </p>
 
-          <div style={styles.button} onClick={signUp}>
-            <span style={styles.buttonText}>Регистрация</span>
-          </div>
+          <p>
+            <Button onClick={signUp}>
+              <span>Регистрация</span>
+            </Button>
+          </p>
         </div>
       )}
       {state.stage === 1 && (
-        <div style={styles.formContainer}>
-          <h1>Регистрация</h1>
+        <div>
+          <h1>Провери мейла си за оторизиращ код</h1>
           {state.error && <Error errorMessage={state.error} />}
-          <Input
-            onChange={handleUpdate}
-            placeholder='Authorization Code'
-            name='authCode'
-            value={state.authCode}
-            style={styles.Input}
-          />
-          <div style={styles.button} onClick={confirmSignUp}>
-            <span style={styles.buttonText}>Потвърди Регистрация</span>
-          </div>
+          <p>
+            <Input
+              onChange={handleUpdate}
+              placeholder='Authorization Code'
+              name='authCode'
+              value={state.authCode}
+            />
+          </p>
+          <p>
+            <Button onClick={confirmSignUp}>
+              <span>Потвърди Регистрация</span>
+            </Button>
+          </p>
         </div>
       )}
 
