@@ -3,7 +3,7 @@ const Layout = ({ children, title, active, user }) => {
   return (
     <>
       <Menu mode='horizontal' selectedKeys={[active]}>
-        <Menu.Item>
+        <Menu.Item key='home'>
           <a href='https://vicove.netlify.app'> 😜 ВИЦОВЕ </a>
         </Menu.Item>
         {!user ? (

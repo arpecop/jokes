@@ -110,7 +110,7 @@ const App = props => {
     isCat: false,
     isItem: false,
     total: 0,
-    currentPage: 1,
+    currentPage: Math.round(match.params.start_key || 1),
     items: []
   })
 
@@ -127,7 +127,6 @@ const App = props => {
           draft.isCat = true
           draft.isLoading = false
           draft.total = items.data.Jokes_aggregate.aggregate.count
-          draft.currentPage = match.params.start_key
           draft.items = items.data.Jokes
         })
       } else if (match.params.id2) {
@@ -207,8 +206,9 @@ const App = props => {
             </Helmet>
           )
         )}
+
         {items.map((item, index) => (
-          <>
+          <div key={index}>
             {index === 2 && !user.username && (
               <div className='ad'>
                 <img src='/img/money.png' alt='' width='60' />
@@ -218,27 +218,29 @@ const App = props => {
                 <Button href='/app/register'>Регистрация</Button>
               </div>
             )}
-            <Item key={index} item={item} cat={cat} user={user} />
-          </>
+            <Item item={item} cat={cat} user={user} />
+          </div>
         ))}
-        <Pagination
-          pageSize={30}
-          defaultCurrent={currentPage}
-          hideOnSinglePage
-          total={total}
-          itemRender={(page, type) => {
-            if (type === 'page') {
-              return <a href={'/cat/' + cat + '/' + page}>{page}</a>
-            }
-            return null
-          }}
-        />
+        <div className='pagination'>
+          <Pagination
+            pageSize={30}
+            defaultCurrent={currentPage}
+            current={currentPage}
+            hideOnSinglePage
+            total={total}
+            itemRender={(page, type) => {
+              if (type === 'page') {
+                return <a href={'/cat/' + cat + '/' + page}>{page}</a>
+              }
+              return null
+            }}
+          />
+        </div>
         <div style={{ textAlign: 'center' }}>
           <Cats />
 
           <Waypoint onEnter={openNotification} />
         </div>
-        )}
       </Layout>
     </>
   )

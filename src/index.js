@@ -48,14 +48,8 @@ const Ruter = () => {
           <App match={{ params: { id2: 'Разни', id: 'cat' } }} user={user} />
         )}
       />
-
       <Route
         path='/:id'
-        exact
-        render={props => <App match={props.match} user={user} />}
-      />
-      <Route
-        path='/cat/:id2'
         exact
         render={props => <App match={props.match} user={user} />}
       />
@@ -65,6 +59,11 @@ const Ruter = () => {
         render={props => (
           <App match={props.match} isIndex={false} user={user} />
         )}
+      />
+      <Route
+        path='/cat/:id2'
+        exact
+        render={props => <App match={props.match} user={user} />}
       />
       <Route
         path='/u/:ref/:id'
