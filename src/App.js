@@ -5,14 +5,13 @@ import React, { useEffect } from 'react'
 
 import { useImmer } from 'use-immer'
 import axios from 'axios'
-import { Button, Tag, Pagination, Input } from 'antd'
+import { Button, Pagination, Input } from 'antd'
 
 import { Helmet } from 'react-helmet'
 
 import Drawerx from './Components/Drawer'
 import Layout from './Layout/Layout'
 import { insert_counter } from './utils/db.js'
-import { cats } from './utils/cats'
 
 import 'antd/dist/antd.css'
 
