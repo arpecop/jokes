@@ -5,8 +5,8 @@ import React, { useEffect } from 'react'
 
 import { useImmer } from 'use-immer'
 import axios from 'axios'
-import { Button, Tag, notification, Pagination, Input } from 'antd'
-import { Waypoint } from 'react-waypoint'
+import { Button, Tag, Pagination, Input } from 'antd'
+
 import { Helmet } from 'react-helmet'
 
 import Drawerx from './Components/Drawer'
@@ -30,20 +30,7 @@ const Iframe = ({ src, height, width }) => (
     allow='encrypted-media'
   />
 )
-const Cats = () =>
-  cats.map(({ cat }) => (
-    <a key={cat} href={`/cat/${cat}`}>
-      <Tag
-        color='magenta'
-        style={{
-          margin: 5,
-          cursor: 'pointer'
-        }}
-      >
-        {cat}
-      </Tag>
-    </a>
-  ))
+
 const JokeBr = ({ joke }) =>
   joke
     .split('\n')
@@ -52,20 +39,6 @@ const JokeBr = ({ joke }) =>
       item
     }))
     .map(({ item, i }) => <div key={i}>{item}</div>)
-
-const openNotification = () => {
-  notification.open({
-    message: 'Харесай Ни!',
-    duration: 20,
-    description: (
-      <Iframe
-        src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-103340854630134%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId'
-        width='300'
-        height='70'
-      />
-    )
-  })
-}
 
 const Item = ({ item, user }) => (
   <div
@@ -236,10 +209,12 @@ const App = props => {
             }}
           />
         </div>
-        <div style={{ textAlign: 'center' }}>
-          <Cats />
-
-          <Waypoint onEnter={openNotification} />
+        <div style={{ textAlign: 'center', padding: 10, clear: 'both' }}>
+          <Iframe
+            src='https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2F%D0%92%D0%B8%D1%86%D0%BE%D0%B2%D0%B5-103340854630134%2F&tabs=timeline&width=340&height=127&small_header=true&adapt_container_width=false&hide_cover=true&show_facepile=false&appId'
+            width='300'
+            height='70'
+          />
         </div>
       </Layout>
     </>
