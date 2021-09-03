@@ -30,7 +30,7 @@ const Iframe = ({ src, height, width }) => (
     allow='encrypted-media'
   />
 )
-
+//br
 const JokeBr = ({ joke }) =>
   joke
     .split('\n')
