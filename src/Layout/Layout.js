@@ -19,20 +19,7 @@ const Layout = ({ children, title, active, user }) => {
             </Menu.Item>
           </>
         ) : (
-          <>
-            <Menu.Item>
-              <a href='https://vicove.netlify.app'> 😜 ВИЦОВЕ </a>
-            </Menu.Item>
-            <Menu.Item key='register'>
-              <a href='/app/register'>Печели пари (Регистация)</a>
-            </Menu.Item>
-            <Menu.Item key='login'>
-              <a href='/app/login'>Вход</a>
-            </Menu.Item>
-            <Menu.Item key='forgot'>
-              <a href='/app/forgot'>Забравена Парола</a>
-            </Menu.Item>
-          </>
+          <></>
         )}
       </Menu>
       <Row

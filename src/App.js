@@ -150,7 +150,7 @@ const App = props => {
   return (
     <>
       <Drawerx />
-      <Layout>
+      <Layout user={user}>
         {isLoading ? (
           <div style={{ textAlign: 'center' }}>
             <Button type='primary' loading />
